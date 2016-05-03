@@ -1,4 +1,4 @@
-function [Bw, P]=lucasTest( pill_img )
+function [c, P]=shape( pill_img )
 %
 %
 %
@@ -32,7 +32,7 @@ bI(idx_white) = 255;
 
 c = contourc( double( bI ), 2 );
 
-P = parseContour( c );
+P = parseContour( c, bI );
 
 if view_shape,
 	figure;
@@ -72,7 +72,7 @@ end;
 %
 %
 
-function shape = parseContour(c)
+function shape = parseContour(c, bI)
 
 k=0; p=1;
 
@@ -84,17 +84,50 @@ while p < size(c,2)
     objects{k} = cc;
 end;
 
-len=0; idx=0;
+Ia = size(bI,1)*size(bI,2);
+Icm = [ size(bI,1)/2 size(bI,2)/2 ];
+
+Mtx = zeros( length( objects ), 2 );
 
 for i=1:length( objects ),
+    
     obj = objects{i};
-    if size(obj,2) > len,
-        idx = i;
-        len = size(obj,2);
-    end;
+    
+    [area,ctm] = shapeArea( obj' );
+    
+    Mtx(i,1) = area/Ia;
+    Mtx(i,2) = pdist( [ ctm ; Icm ], 'euclidean' );
+    
+    %fprintf('(%d) %.6f %.6f\n', i, Mtx(i,1), Mtx(i,2) );
+
 end;
 
-shape = objects{idx}';
+[~,idd]=sortrows( Mtx, [-1 2] );
+
+% fprintf( '%.7f\n', Mtx(idd(1),1) );
+
+shape = objects{idd(1)}';
+
+% ----------------------------------
+% Helper function size of shape
+%
+%
+
+function [area,cm] = shapeArea( shape )
+
+min_vec = min( shape );
+max_vec = max( shape );
+
+% -------------------------------------
+% simple width x height calucation 
+% of rectangular bounding box
+
+width = ( max_vec( 1 ) - min_vec( 1 ) );
+height = ( max_vec( 2 ) - min_vec( 2 ) );
+
+area = width * height;
+
+cm = mean( shape );
 
 
 
