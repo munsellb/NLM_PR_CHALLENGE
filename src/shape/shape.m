@@ -1,4 +1,4 @@
-function [c, P]=shape( pill_img )
+function [bI,bW,T]=shape( pill_img )
 %
 %
 %
@@ -13,7 +13,7 @@ F = floor( M/2 );
 S = floor( M/5 );
 
 view_shape = false;
-view_mask = true;
+view_mask = false;
 
 I = imread( pill_img );
 
@@ -53,16 +53,24 @@ if y_max > x_max, d_max = y_max; end;
 
 Pc = ( Pc ./ d_max ) .* S + repmat( [F F], size(Pc,1), 1 );
 
+T.d_max = d_max;
+T.S = S;
+T.F = F;
+T.x_mean = x_mean;
+T.y_mean = y_mean;
+T.M = M;
+T.N = N;
+
 fprintf('mean x = %.3f, mean y = %.3f\n', mean(Pc(:,1)), mean(Pc(:,2)) );
 fprintf('max x = %.3f, max y = %.3f\n', max(Pc(:,1)), max(Pc(:,2)) );
 
-Bw = poly2mask( Pc(:,1)',Pc(:,2)', M, N );
+bW = poly2mask( Pc(:,1)',Pc(:,2)', M, N );
 
 if view_mask,
 	figure;
     subplot( 1,3,1 ); imshow( I ); title('color image');
     subplot( 1,3,2 ); imshow( bI ); title('binary image');
-	subplot( 1,3,3 ); imshow( Bw ); title('binary shape mask');
+	subplot( 1,3,3 ); imshow( bW ); title('binary shape mask');
 end;
 
 
