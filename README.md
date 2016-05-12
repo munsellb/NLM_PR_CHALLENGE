@@ -13,8 +13,8 @@ Note: this script is only executed once and must be done before any other script
 
 From the matlab command prompt run:
 ```
-orgImgs( 'data','proc', 'DR' );
-orgImgs( 'data','proc', 'DC' );
+orgImgs( 'data', 'proc', 'DR' );
+orgImgs( 'data', 'proc', 'DC' );
 ```
 For more information about this script, type "help orgImgs" at the matlab command prompt.
 
