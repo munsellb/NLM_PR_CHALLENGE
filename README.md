@@ -34,3 +34,11 @@ From the matlab command prompt run:
 [ S, K, T ] = classify( 'proc', 'DR', 'DC' );
 ```
 For more information about this script, type "help classifyImgs" at the matlab command prompt.
+
+###Step 5: Generate MR csv file
+
+From the matlab command prompt run:
+```
+generateMR( 'proc', 'showmethepillz' );
+```
+For more information about this script, type "help generateMR" at the matlab command prompt.
