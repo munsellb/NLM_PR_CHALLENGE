@@ -29,6 +29,6 @@ For more information about this script, type "help procImgs" at the matlab comma
 
 From the matlab command prompt run:
 ```
-classifyImgs( ref, consumer );
+[ S, K, T ] = classify( 'proc', 'DR', 'DC' );
 ```
 For more information about this script, type "help classifyImgs" at the matlab command prompt.
