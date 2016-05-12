@@ -23,8 +23,8 @@ error( nargchk(1,1,nargin) );
 
 M_REF = 2400;
 
-M = 500;
-N = 500;
+M = 200;
+N = 200;
 F = floor( M/2 );
 S = floor( M/5 );
 
