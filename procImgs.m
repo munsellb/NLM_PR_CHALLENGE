@@ -50,15 +50,21 @@ opts.save_masked_rgb = true;
 for i=1:length(D),
     
     img_file = [ D{i}.path '/' D{i}.img ];
-    
+        
+    fprintf('processing %s\n', img_file );
+
     [bI,bW,T]=shape( img_file );
-    
+
     imwrite( bI, [ D{i}.path '/mask_bI.jpg'], 'JPEG' );
-    
+
     imwrite( bW, [ D{i}.path '/mask_bW.jpg'], 'JPEG' );
-    
+
     save( [ D{i}.path '/Transform.mat'], 'T' );
-    
+
     text( D{i}, opts );
+
+    Ic = makeColorMat( img_file, [ D{i}.path '/mask_bI.jpg'] );
+
+    imwrite( Ic, [ D{i}.path '/color.jpg'] );
     
 end;
