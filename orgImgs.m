@@ -28,6 +28,8 @@ function orgImgs( type, data_dir, proc_dir )
 %
 %
 
+M_REF = 2400;
+
 error( nargchk(3,3,nargin) );
     
 if ~strcmpi( type, 'DR' ) && ~strcmpi( type, 'DC' ),
@@ -58,30 +60,32 @@ for i=1:length( imgs ),
     
     if ~isdir( imgs(i).name ) && strcmp( ext, '.jpg' ),
         
-        fold_path = [ proc_dir '/' name ];
+        fold_path = [ pdir '/' name ];
         
         if ~exist( fold_path, 'dir' ),
-            
             mkdir( fold_path );
+        end;
             
-            [success, ~, ~] = copyfile( [ddir '/' name ext], [fold_path '/' name ext] );
-            
-            if ~success,
-                
-                fprintf('failed to copy image file [%s : %s]\n', [pth '/' name ext], [fold_path '/' name ext] ); 
-  
-            else,
-                
-                D{cnt}.path = fold_path;
-                
-                D{cnt}.img = [name ext];
-                
-                fprintf('successfully processed %d %s image\n', cnt, upper( type ) ); 
-                
-                cnt=cnt+1;
-                
-            end;
-            
+        try,
+
+            RGB = imread( [ddir '/' name ext] );
+
+            M_RGB_SX = M_REF/size(RGB,2);
+
+            RGB = imresize( RGB, M_RGB_SX );
+
+            imwrite( RGB, [fold_path '/' name ext], 'JPEG' );
+
+            D{cnt}.path = fold_path;
+
+            D{cnt}.img = [name ext];
+
+%                 fprintf('success: %s [%d : %s]\n', upper( type ), cnt, [name ext] ); 
+
+            cnt=cnt+1;
+
+        catch,
+            fprintf('failure: %s [%d : %s]\n', upper( type ), cnt, [name ext] ); 
         end;
         
     end; 
