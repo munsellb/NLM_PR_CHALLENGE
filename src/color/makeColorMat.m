@@ -15,7 +15,7 @@ function out = makeColorMat(im,mask)
   mask = imread(mask);
 
   % take third channel of mask
-  m = mask(:,:,3);
+  m = mask;
 
   % split color channels for images
   L = im_mat(:,:,1);
@@ -28,8 +28,8 @@ function out = makeColorMat(im,mask)
   b = mean(b(m ~=0));
 
   % build out matrix
-  out(1:500,1:500,1) = L;
-  out(1:500,1:500,2) = a;
-  out(1:500,1:500,3) = b;
+  out(1:50,1:50,1) = L;
+  out(1:50,1:50,2) = a;
+  out(1:50,1:50,3) = b;
 
   out = lab2rgb(out);
