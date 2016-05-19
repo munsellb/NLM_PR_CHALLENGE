@@ -44,8 +44,9 @@ D=[];
 
 load( [ pwd '/' proc_dir '/' upper(type) '.mat'] );
 
-opts.debug = false;
+opts.debug = true;
 opts.save_masked_rgb = true;
+opts.type = type;
 
 for i=1:length(D),
     
@@ -53,7 +54,7 @@ for i=1:length(D),
         
     fprintf('processing %s\n', img_file );
 
-    [bI,bW,T]=shape( img_file );
+    [bI,bW,T]=shape( type, img_file );
 
     imwrite( bI, [ D{i}.path '/mask_bI.jpg'], 'JPEG' );
 
