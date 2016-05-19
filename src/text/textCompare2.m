@@ -24,7 +24,7 @@ Mb =uint8( Mb );
 Ib = imread( [ B.path '/mask_rgb.jpg' ] );
 
 Za = Ma.*Ia;
-Zb = Mb.*Ib;
+Zb = Ib;
 
 Zaa = squeeze( Za(:,:,1 ) );
 IDX = ind2sub( size(Zaa), find( Zaa > 0 ) );
