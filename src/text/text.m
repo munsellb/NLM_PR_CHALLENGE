@@ -10,6 +10,7 @@ function text( A, varargin )
 debug = true;
 show_fig = false;
 save_masked_rgb = false;
+type = 'DR';
 
 error( nargchk(1,2,nargin) );
 
@@ -28,6 +29,10 @@ if length(varargin) == 1,
     if isfield( opts, 'save_masked_rgb' ),
         save_masked_rgb = opts.save_masked_rgb;
     end;
+    
+    if isfield( opts, 'type' ),
+        type = opts.type;
+    end;
 end;
 
 Transform_File = [ A.path '/Transform.mat' ];
@@ -35,6 +40,7 @@ Pill_Resolution_Mask = [ A.path '/mask_bI.jpg' ];
 Square_Resolution_Mask = [ A.path '/mask_bW.jpg' ];
 Pill_RGB_Image = [ A.path '/' A.img ];
 Pill_RGB_Mask = [ A.path '/mask_rgb.jpg' ];
+Pill_RGB_Mask_EX = [ A.path '/mask_rgb_ex.jpg' ];
 
 load( Transform_File );
 
@@ -48,27 +54,37 @@ I=imread( Pill_RGB_Image );
 
 [M,N,~]=size(I);
 
-Tx = 0;
-Ty = 0;
+Tx = ( (N/2) - ( T.x_mean ) );
+Ty = ( (M/2) - ( T.y_mean ) );
 
-if floor( T.x_mean ) < (N/2)
-    Tx=(T.S/T.d_max)*(N/2-T.x_mean);
-end;
-
-if floor( T.y_mean ) < (M/2),
-    Ty=(T.S/T.d_max)*(M/2-T.y_mean);
-end;
+% if floor( T.x_mean ) < (N/2)
+%     Tx=(T.S/T.d_max)*(N/2-T.x_mean);
+% end;
+% 
+% if floor( T.y_mean ) < (M/2),
+%     Ty=(T.S/T.d_max)*(M/2-T.y_mean);
+% end;
 
 if debug,
     fprintf('M=%d - %.4f, N=%d - %.4f\n', M/2, T.y_mean, N/2, T.x_mean);
     fprintf('Tx=%.4f, Ty=%.4f\n', Tx, Ty);
 end;
 
-A = [ (T.S/T.d_max) 0 0; 0 (T.S/T.d_max) 0; Tx Ty 1];
+A = [ 1 0 0; 0 1 0; Tx Ty 1];
+tform = maketform('affine', A );
+I = imtransform( I, tform, 'XData',[1 size(I,2)], 'YData',[1 size(I,1)] );
+
+A = [ (T.S/T.d_max) 0 0; 0 (T.S/T.d_max) 0; 0 0 1];
 
 tform = maketform('affine', A );
 
-TI = imtransform( (I.*bI), tform );
+EX = (I.*bI);
+
+if strcmpi( type, 'DR' ),
+    TI = imtransform( (I.*bI), tform );
+else,
+    TI = imtransform( I, tform );
+end;
 
 start_M = floor( ( T.M - size(TI,1) ) / 2 );
 start_N = floor( ( T.N - size(TI,2) ) / 2 );
@@ -171,6 +187,7 @@ end;
 
 if save_masked_rgb,
     imwrite( TII, Pill_RGB_Mask, 'JPEG');
+    imwrite( imresize( EX, 0.25 ), Pill_RGB_Mask_EX, 'JPEG');
 end;
 
 
