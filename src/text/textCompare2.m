@@ -7,39 +7,59 @@ function d=textCompare2( A, B, ang )
 %
 %
 
-error( nargchk(3,3,nargin) );
+show_cputime = false;
 
-Ma(:,:,1) = im2bw( imread( [ A.path '/mask_bW.jpg' ] ) );
-Ma(:,:,2) = Ma(:,:,1);
-Ma(:,:,3) = Ma(:,:,1);
-Ma =uint8( Ma );
+error( nargchk( 3, 3, nargin ) );
+
+if show_cputime, tt = cputime; end;
 
 Ia = imread( [ A.path '/mask_rgb.jpg' ] );
-
-Mb(:,:,1) = uint8( im2bw( imread( [ B.path '/mask_bW.jpg' ] ) ) );
-Mb(:,:,2) = Mb(:,:,1);
-Mb(:,:,3) = Mb(:,:,1);
-Mb =uint8( Mb );
+Iaa = imresize( Ia, 0.25 );
 
 Ib = imread( [ B.path '/mask_rgb.jpg' ] );
 
-Za = Ma.*Ia;
-Zb = Ib;
+Ma = im2bw( imread( [ A.path '/mask_bW.jpg' ] ) );
+Maa = imresize( Ma, 0.25 );
 
-Zaa = squeeze( Za(:,:,1 ) );
-IDX = ind2sub( size(Zaa), find( Zaa > 0 ) );
+IDX = ind2sub( size(Ma), find( Ma > 0 ) );
+IDXa = ind2sub( size(Maa), find( Maa > 0 ) );
 
-Zb_r1 = imrotate( Zb, ang, 'crop' );
-Zb_r2 = imrotate( Zb, (ang+180), 'crop' );
+Xb = nudge( Ib, 2 );
 
-d = computeSim( Za, Zb_r1, Zb_r2, IDX );
+d = 0;
+idd = 0;
+
+for i=1:length( Xb ),
+
+    Zb_r1 = imrotate( Xb{i}.I, ang, 'crop' );
+    
+    Zb_r2 = imrotate( Xb{i}.I, (ang+180), 'crop' );
+    
+    dd = computeSim( Iaa, Zb_r1, Zb_r2, IDXa, 0 );
+
+    if dd > d, d = dd; idd=i; end;
+
+end;
+
+Ib = imtransform( Ib, Xb{idd}.tform, 'XData',[1 size(Ib,2)], 'YData',[1 size(Ib,1)] );
+Zb_r1 = imrotate( Ib, ang, 'crop' );
+Zb_r2 = imrotate( Ib, (ang+180), 'crop' );
+
+d = computeSim( Ia, Zb_r1, Zb_r2, IDX, 1 );
+
+if show_cputime, fprintf('(text compare) total time = %.4f sec\n', cputime-tt ); end;
 
 % -----------------------------
 %
 % helper function
 %
 %
-function delta = computeSim( Za, Zb, Zbb, IDX )
+function delta = computeSim( Za, Zb, Zbb, IDX, flg )
+
+% N = sqrt( 100^2 + 220^2 + 220^2 );
+N = 255;
+
+MM = 1/(1-0.995);
 
 delta = zeros(1,2);
 
@@ -71,8 +91,12 @@ Lbb = Lbb( IDX );
 Abb = Abb( IDX );
 Bbb = Bbb( IDX );
 
-delta(1) = 1 - sqrt( sum( (La-Lb).^2 ) + sum( (Aa-Ab).^2 ) + sum( (Ba-Bb).^2) ) / ( 255*length(IDX) );
-delta(2) = 1 - sqrt( sum( (La-Lbb).^2 ) + sum( (Aa-Abb).^2 ) + sum( (Ba-Bbb).^2) ) / ( 255*length(IDX) );
+delta(1) = 1 - sqrt( sum( (La-Lb).^2 ) + sum( (Aa-Ab).^2 ) + sum( (Ba-Bb).^2) ) / ( N*length(IDX) );
+delta(2) = 1 - sqrt( sum( (La-Lbb).^2 ) + sum( (Aa-Abb).^2 ) + sum( (Ba-Bbb).^2) ) / ( N*length(IDX) );
 
-delta = max( delta );
+if flg == 0,
+    delta = max( delta );
+else,
+    delta = 1 - ( MM - ( max( delta )*MM ) );
+end;
 
