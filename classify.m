@@ -91,7 +91,7 @@ for i=range(1):range(2),
             
             if debug, jt = cputime; end;
             
-            [ d, ang ]=jaccardCoeff( R.D{i}, C.D{j} );
+            [ d, ang ]=jaccardCoeff( R.D{j}, C.D{i} );
             
             if debug, 
                 fprintf('Jaccard (%d,%d) in %.3f sec\n', i, j, (cputime - jt) );
@@ -99,7 +99,7 @@ for i=range(1):range(2),
             
             S( i, j ) = d;
 
-            d = compareColors( R.D{i}, C.D{j} );
+            d = compareColors( R.D{j}, C.D{i} );
             
             if debug,
                 fprintf('Color (%d,%d) in %.3f sec\n', i, j, (cputime - jt) );
@@ -107,7 +107,7 @@ for i=range(1):range(2),
 
             K( i, j ) = d;
             
-            d = textCompare2( R.D{i}, C.D{j}, ang );
+            d = textCompare2( R.D{j}, C.D{i}, ang );
             
             T( i, j ) = d;
             
