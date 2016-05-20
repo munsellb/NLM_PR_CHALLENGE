@@ -10,6 +10,16 @@ function sim=compareColors( A, B )
   % load images
   %c1 = rgb2lab(imread(c1));
   %c2 = rgb2lab(imread(c2));
+  
+show_cputime = false;
+
+MM = 1/(1-0.5);
+
+error( nargchk( 2, 2, nargin ) );
+
+if show_cputime, tt = cputime; end;
+  
+N = sqrt( 100^2 + 220^2 + 220^2 );
 
 error( nargchk(2,2,nargin) );
 
@@ -26,4 +36,7 @@ b2 = c2(:,:,3);
 
 %% CIE LAB FORMULA 197*
 sim = 1 - sqrt((L1-L2).^2 + (a1-a2).^2 + (b1-b2).^2) / 255;
-sim = sim(1);
+% sim = sim(1);
+sim = 1 - ( MM - ( sim(1)*MM ) );
+
+if show_cputime, fprintf('(color compare) total time = %.4f sec\n', cputime-tt ); end;
