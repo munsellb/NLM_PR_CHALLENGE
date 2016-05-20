@@ -26,6 +26,7 @@ function [ S, K, T ] = classify( proc_dir, ref, con, varargin )
 
 debug = false;
 save_files = false;
+href = 0;
 
 error( nargchk( 3, 4, nargin ) );
 
@@ -41,6 +42,10 @@ if length(varargin) == 1,
     
     if isfield( opts, 'save_files'),
         save_files = opts.save_files;
+    end;
+
+    if isfield( opts, 'href'),
+        href = opts.href;
     end;
     
 end;
@@ -81,8 +86,8 @@ for i=range(1):range(2),
     tt = cputime;
     
     for j=1:length( R.D ),
-        
-%         if S(i,j) == 0,
+
+	try,
             
             if debug, jt = cputime; end;
             
@@ -93,7 +98,6 @@ for i=range(1):range(2),
             end;
             
             S( i, j ) = d;
-%             S( j, i ) = S( i, j );
 
             d = compareColors( R.D{i}, C.D{j} );
             
@@ -102,12 +106,10 @@ for i=range(1):range(2),
             end;
 
             K( i, j ) = d;
-%             K( j, i ) = K( i, j );
             
             d = textCompare2( R.D{i}, C.D{j}, ang );
             
             T( i, j ) = d;
-%             T( j, i ) = T( i, j );
             
             if debug,
             
@@ -116,17 +118,21 @@ for i=range(1):range(2),
                 fprintf('-------------------------------\n');
                 
             end;
+
+	catch,
+		fprintf('failed DR=%d and DC=%d\n', j, i );
+	end;
             
-        end;
+      end;
         
 %     end;
     
     fprintf('Total time for (%d) = %.4f sec\n', i, (cputime - tt) );
     
     if save_files,
-        save( [proc_dir '/S.mat'], 'S' );
-        save( [proc_dir '/K.mat'], 'K' );
-        save( [proc_dir '/T.mat'], 'T' );
+        save( [proc_dir '/S_' num2str( href ) '.mat'], 'S' );
+        save( [proc_dir '/K_' num2str( href ) '.mat'], 'K' );
+        save( [proc_dir '/T_' num2str( href ) '.mat'], 'T' );
     end;
     
 end;
