@@ -16,18 +16,23 @@ function [ d, angle ] = jaccardCoeff( A, B )
 %   
 %
 %   Example:
-%           d = jaccardCoeff( im2bw( imread( 'A.jpg' ) ), im2bw( imread(
-%           'B.jpg' ) ), 30 );
+%
+%           bA = im2bw( imread( 'A.jpg' );
+%           bB = im2bw( imread( 'B.jpg' );
+%           [ d, ang ] = jaccardCoeff( bA, bB );
 %
 %
 %
 
-step = 90;
+show_cputime = false;
 
-error( nargchk(2,2,nargin) );
+step = 180;
+
+error( nargchk( 2, 2, nargin ) );
+
+if show_cputime, tt = cputime; end;
 
 Ia = im2bw( imread( [ A.path '/mask_bW.jpg' ] ) );
-
 Ib = im2bw( imread( [ B.path '/mask_bW.jpg' ] ) );
 
 d = 0;
@@ -48,7 +53,7 @@ for i=0:step:180,
     
 end;
 
-
+if show_cputime, fprintf('(jaccard) total time = %.4f sec\n', cputime-tt ); end;
 
 
 
