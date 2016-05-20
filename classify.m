@@ -1,4 +1,4 @@
-function [ S, K, T ] = classify( proc_dir, ref, con )
+function [ S, K, T ] = classify( proc_dir, ref, con, varargin )
 %
 %   Usage: [ S, K, T ] = classify( proc_dir, ref, con )
 %
@@ -25,8 +25,21 @@ function [ S, K, T ] = classify( proc_dir, ref, con )
 %   
 
 debug = false;
+save_files = false;
 
-error( nargchk(3,3,nargin) );
+error( nargchk( 3, 4, nargin ) );
+
+range = [1 5000];
+
+if length(varargin) == 1,
+    
+    opts = varargin{1};
+    
+    if isfield( opts, 'range'),
+        range = opts.range;
+    end;
+    
+end;
     
 if ~strcmpi( ref, 'DR' ) && ~strcmpi( ref, 'DC' ),
     error('type argument not valid, see help');
@@ -55,15 +68,17 @@ S = zeros( length( C.D ), length( R.D ) );
 K = zeros( length( C.D ), length( R.D ) );
 T = zeros( length( C.D ), length( R.D ) ); 
 
-fprintf('size of scoring matrix (%d,%d)\n', size(S,1), size(S,2) );
+fprintf('-----------------------------------------------------\n');
+fprintf('Size of scoring matrix (%d,%d)\n', size(S,1), size(S,2) );
+fprintf('Range = [ %d %d ]\n', range(1), range(2) );
 
-for i=1:length( C.D ),
+for i=range(1):range(2),
     
     tt = cputime;
     
     for j=1:length( R.D ),
         
-        if S(i,j) == 0,
+%         if S(i,j) == 0,
             
             if debug, jt = cputime; end;
             
@@ -74,7 +89,7 @@ for i=1:length( C.D ),
             end;
             
             S( i, j ) = d;
-            S( j, i ) = S( i, j );
+%             S( j, i ) = S( i, j );
 
             d = compareColors( R.D{i}, C.D{j} );
             
@@ -83,12 +98,12 @@ for i=1:length( C.D ),
             end;
 
             K( i, j ) = d;
-            K( j, i ) = K( i, j );
+%             K( j, i ) = K( i, j );
             
             d = textCompare2( R.D{i}, C.D{j}, ang );
             
             T( i, j ) = d;
-            T( j, i ) = T( i, j );
+%             T( j, i ) = T( i, j );
             
             if debug,
             
@@ -100,12 +115,14 @@ for i=1:length( C.D ),
             
         end;
         
-    end;
+%     end;
     
     fprintf('Total time for (%d) = %.4f sec\n', i, (cputime - tt) );
     
-    save( [proc_dir '/S.mat'], 'S' );
-    save( [proc_dir '/K.mat'], 'K' );
-    save( [proc_dir '/T.mat'], 'T' );
+    if save_files,
+        save( [proc_dir '/S.mat'], 'S' );
+        save( [proc_dir '/K.mat'], 'K' );
+        save( [proc_dir '/T.mat'], 'T' );
+    end;
     
 end;
