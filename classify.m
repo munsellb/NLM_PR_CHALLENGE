@@ -39,6 +39,10 @@ if length(varargin) == 1,
         range = opts.range;
     end;
     
+    if isfield( opts, 'save_files'),
+        save_files = opts.save_files;
+    end;
+    
 end;
     
 if ~strcmpi( ref, 'DR' ) && ~strcmpi( ref, 'DC' ),
