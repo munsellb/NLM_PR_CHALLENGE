@@ -7,6 +7,8 @@ function d=textCompare2( A, B, ang )
 %
 %
 
+PIX_NUDGE = 10;
+
 show_cputime = false;
 
 error( nargchk( 3, 3, nargin ) );
@@ -24,7 +26,7 @@ Maa = imresize( Ma, 0.25 );
 IDX = ind2sub( size(Ma), find( Ma > 0 ) );
 IDXa = ind2sub( size(Maa), find( Maa > 0 ) );
 
-Xb = nudge( Ib, 2 );
+Xb = nudge( Ib, PIX_NUDGE );
 
 d = 0;
 idd = 0;
@@ -32,9 +34,7 @@ idd = 0;
 for i=1:length( Xb ),
 
     Zb_r1 = imrotate( Xb{i}.I, ang, 'crop' );
-    
     Zb_r2 = imrotate( Xb{i}.I, (ang+180), 'crop' );
-    
     dd = computeSim( Iaa, Zb_r1, Zb_r2, IDXa, 0 );
 
     if dd > d, d = dd; idd=i; end;
