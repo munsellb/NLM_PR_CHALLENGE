@@ -54,8 +54,6 @@ for i=1:size( medbgclr,1 ),
 
 end;
 
-% RGB = supersecret( RGB );
-
 RGB = imdilate( RGB, strel( 'disk', 20 ) );
 RGB = imerode( RGB, strel( 'disk', 18 ) );
 
@@ -216,28 +214,3 @@ if ~isempty( IDX ),
 else,
     rgb = zeros(1,3);
 end;
-
-
-function RGB = supersecret( RGB )
-
-I=rgb2hsv( RGB );
-I1=I(:,:,2);
-
-thresholded = I1 > 0.20; 
-thresholded = bwareaopen(thresholded,500); 
-I2=thresholded.*I1;
-I3=edge(I2,'canny',graythresh(I2));
-bW = imfill(I3,'hole');
-
-bW = uint8( bW );
-
-RGB(:,:,1) = RGB(:,:,1).*bW;
-RGB(:,:,2) = RGB(:,:,2).*bW;
-RGB(:,:,3) = RGB(:,:,3).*bW;
-
-
-
-
-
-
-
