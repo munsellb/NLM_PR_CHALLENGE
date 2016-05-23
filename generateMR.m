@@ -9,14 +9,14 @@ function generateMR( proc_dir, file_name )
 %
 %
 
-error( nargchk(2,2,nargin) );
+error( nargchk( 2, 2, nargin ) );
 
 ref_struct = [ pwd '/' proc_dir '/DR.mat' ];
 con_struct = [ pwd '/' proc_dir '/DC.mat' ];
 
-K_file = [ pwd '/' proc_dir '/K.mat' ];
-T_file = [ pwd '/' proc_dir '/T.mat' ];
-S_file = [ pwd '/' proc_dir '/S.mat' ];
+K_file = [ pwd '/' proc_dir '/K_5.mat' ];
+T_file = [ pwd '/' proc_dir '/T_5.mat' ];
+S_file = [ pwd '/' proc_dir '/S_5.mat' ];
 
 if ~exist( ref_struct, 'file' ),
     error( '(%s) file not found! See help\n', ref_struct );
@@ -41,24 +41,73 @@ end;
 R = load( ref_struct );
 C = load( con_struct );
 
+[hdr,rws]=headerAndRow( proc_dir );
+
 load( K_file );
 load( T_file );
 load( S_file );
 
-F = ( K + S + T )/3;
+fhndle = [ pwd '/' proc_dir '/' file_name '.csv' ];
 
-fid = fopen( [ pwd '/' proc '/' file_name '.csv' ], 'w' );
+fprintf('Creating CSV MR File (%s)\n', fhndle );
+
+fid = fopen( fhndle, 'w' );
 
 % --------------------------------------
 % Add column for each reference image
 
-for i=1:length(R.D),
+for i=1:length( hdr ),
 
-    fprintf( fid, ',%s', R.D{i}.img );
+    if i ~= length( hdr ),
+        fprintf( fid, '%s,', hdr{i} );
+    else,
+        fprintf( fid, '%s\n', hdr{i} );
+    end;
 
 end;
 
-% more to come ....
+cnt = 1;
 
+N = length(rws)/10;
+
+for i=1:length( rws ),
+    
+    if mod(i,N) == 0,
+        fprintf('%d percent complete\n', (cnt*10) );
+        cnt = cnt + 1;
+    end;
+    
+    k_vec = range_enhance( K(i,:) );
+    t_vec = range_enhance( T(i,:) );
+    s_vec = S(i,:);
+    
+    f = ( k_vec + t_vec + s_vec ) / 3;
+    
+    [~,idx]=sort( f, 'descend' );
+    rnk(idx) = [ 1:length(f) ];
+    
+    R=[ rws(i) sprintf('%d,', rnk(1:end-1) ) sprintf('%d\n', rnk(end) ) ];
+    
+    fprintf( fid, '%s', R{1:end} );
+    
+end;
 
 fclose( fid );
+
+fprintf('Finished!\n' );
+
+% -------------------------------
+% 
+%   Helper functions
+%
+% -------------------------------
+
+function v = range_enhance( v )
+
+mn = min(v) - ( min(v)*.05 );
+
+sx = ( 1 - 0 )/( 1 - mn );
+
+v = v.*sx;
+
+
