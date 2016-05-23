@@ -35,7 +35,7 @@ for i=1:length( Xb ),
 
     Zb_r1 = imrotate( Xb{i}.I, ang, 'crop' );
     Zb_r2 = imrotate( Xb{i}.I, (ang+180), 'crop' );
-    dd = computeSim( Iaa, Zb_r1, Zb_r2, IDXa, 0 );
+    dd = computeSim( Iaa, Zb_r1, Zb_r2, IDXa );
 
     if dd > d, d = dd; idd=i; end;
 
@@ -45,7 +45,7 @@ Ib = imtransform( Ib, Xb{idd}.tform, 'XData',[1 size(Ib,2)], 'YData',[1 size(Ib,
 Zb_r1 = imrotate( Ib, ang, 'crop' );
 Zb_r2 = imrotate( Ib, (ang+180), 'crop' );
 
-d = computeSim( Ia, Zb_r1, Zb_r2, IDX, 1 );
+d = computeSim( Ia, Zb_r1, Zb_r2, IDX );
 
 if show_cputime, fprintf('(text compare) total time = %.4f sec\n', cputime-tt ); end;
 
@@ -54,12 +54,9 @@ if show_cputime, fprintf('(text compare) total time = %.4f sec\n', cputime-tt );
 % helper function
 %
 %
-function delta = computeSim( Za, Zb, Zbb, IDX, flg )
+function delta = computeSim( Za, Zb, Zbb, IDX )
 
-% N = sqrt( 100^2 + 220^2 + 220^2 );
 N = 255;
-
-MM = 1/(1-0.995);
 
 delta = zeros(1,2);
 
@@ -94,9 +91,4 @@ Bbb = Bbb( IDX );
 delta(1) = 1 - sqrt( sum( (La-Lb).^2 ) + sum( (Aa-Ab).^2 ) + sum( (Ba-Bb).^2) ) / ( N*length(IDX) );
 delta(2) = 1 - sqrt( sum( (La-Lbb).^2 ) + sum( (Aa-Abb).^2 ) + sum( (Ba-Bbb).^2) ) / ( N*length(IDX) );
 
-if flg == 0,
-    delta = max( delta );
-else,
-    delta = 1 - ( MM - ( max( delta )*MM ) );
-end;
-
+delta = max( delta );
