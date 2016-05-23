@@ -14,9 +14,9 @@ error( nargchk( 2, 2, nargin ) );
 ref_struct = [ pwd '/' proc_dir '/DR.mat' ];
 con_struct = [ pwd '/' proc_dir '/DC.mat' ];
 
-K_file = [ pwd '/' proc_dir '/K_5.mat' ];
-T_file = [ pwd '/' proc_dir '/T_5.mat' ];
-S_file = [ pwd '/' proc_dir '/S_5.mat' ];
+K_file = [ pwd '/' proc_dir '/K.mat' ];
+T_file = [ pwd '/' proc_dir '/T.mat' ];
+S_file = [ pwd '/' proc_dir '/S.mat' ];
 
 if ~exist( ref_struct, 'file' ),
     error( '(%s) file not found! See help\n', ref_struct );
@@ -47,7 +47,7 @@ load( K_file );
 load( T_file );
 load( S_file );
 
-fhndle = [ pwd '/' proc_dir '/' file_name '.csv' ];
+fhndle = [ pwd '/' file_name '.csv' ];
 
 fprintf('Creating CSV MR File (%s)\n', fhndle );
 
