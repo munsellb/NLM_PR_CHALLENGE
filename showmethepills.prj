@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="3234998293" file="/data/git/NLM_PR_CHALLENGE/showmethepills.prj" location="/data/git/NLM_PR_CHALLENGE" name="showmethepills" preferred-package-location="/data/git/NLM_PR_CHALLENGE/showmethepills/for_redistribution" preferred-package-type="package.type.install" target="target.ezdeploy.standalone" target-name="MATLAB Compiler for Standalone Applications">
+  <configuration build-checksum="920648947" file="/data/git/NLM_PR_CHALLENGE/showmethepills.prj" location="/data/git/NLM_PR_CHALLENGE" name="showmethepills" preferred-package-location="/data/git/NLM_PR_CHALLENGE/showmethepills/for_redistribution" preferred-package-type="package.type.install" target="target.ezdeploy.standalone" target-name="MATLAB Compiler for Standalone Applications">
     <param.appname>showmethepills</param.appname>
     <param.icon />
     <param.icons />
@@ -74,6 +74,7 @@
       <file>${PROJECT_ROOT}/src/color/makeColorMat.m</file>
       <file>${PROJECT_ROOT}/src/color/rgb2lab.m</file>
       <file>${PROJECT_ROOT}/src/color/rgbSim.m</file>
+      <file>${PROJECT_ROOT}/src/setup/headerAndRow.m</file>
       <file>${PROJECT_ROOT}/src/shape/catmullRom2D.m</file>
       <file>${PROJECT_ROOT}/src/shape/jaccardCoeff.m</file>
       <file>${PROJECT_ROOT}/src/shape/nudge.m</file>
@@ -83,7 +84,6 @@
       <file>${PROJECT_ROOT}/src/shape/shape.m</file>
       <file>${PROJECT_ROOT}/src/shape/shape_con.m</file>
       <file>${PROJECT_ROOT}/src/shape/shape_ref.m</file>
-      <file>${PROJECT_ROOT}/src/text/test_text_dr.m</file>
       <file>${PROJECT_ROOT}/src/text/text.m</file>
       <file>${PROJECT_ROOT}/src/text/textCompare2.m</file>
     </fileset.resources>
