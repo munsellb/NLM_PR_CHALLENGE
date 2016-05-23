@@ -14,9 +14,9 @@ error( nargchk( 2, 2, nargin ) );
 ref_struct = [ pwd '/' proc_dir '/DR.mat' ];
 con_struct = [ pwd '/' proc_dir '/DC.mat' ];
 
-K_file = [ pwd '/' proc_dir '/K.mat' ];
-T_file = [ pwd '/' proc_dir '/T.mat' ];
-S_file = [ pwd '/' proc_dir '/S.mat' ];
+K_file = [ pwd '/' proc_dir '/K1.mat' ];
+T_file = [ pwd '/' proc_dir '/T1.mat' ];
+S_file = [ pwd '/' proc_dir '/S1.mat' ];
 
 if ~exist( ref_struct, 'file' ),
     error( '(%s) file not found! See help\n', ref_struct );
