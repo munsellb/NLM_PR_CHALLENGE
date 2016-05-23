@@ -17,8 +17,6 @@ error( nargchk( 2, 2, nargin ) );
 
 if show_cputime, tt = cputime; end;
 
-error( nargchk(2,2,nargin) );
-
 c1 = rgb2lab( imread( [ A.path '/color.jpg' ] ) );
 c2 = rgb2lab( imread( [ B.path '/color.jpg' ] ) );
 
