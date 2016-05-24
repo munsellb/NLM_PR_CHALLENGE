@@ -4,5 +4,5 @@
 
 chmod 775 ./exe/showmethepills
 
-./exe/run_matlab.sh /usr/local/MATLAB/MATLAB_Compiler_Runtime/v83
+./exe/run_matlab.sh /usr/local/MATLAB/MATLAB_Compiler_Runtime/v83 $1 $2
 
