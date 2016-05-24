@@ -30,13 +30,13 @@ function orgImgs( type, data_dir, proc_dir )
 
 M_REF = 2400;
 
-error( nargchk(3,3,nargin) );
+error( nargchk( 3, 3, nargin ) );
     
 if ~strcmpi( type, 'DR' ) && ~strcmpi( type, 'DC' ),
     error('type argument not valid, see help');
 end;
 
-ddir = [ pwd '/' data_dir '/' lower( type ) ];
+ddir = [ pwd '/' data_dir ];
 
 if ~exist( ddir, 'dir' ),
     error('data directory argument not valid, see help');
