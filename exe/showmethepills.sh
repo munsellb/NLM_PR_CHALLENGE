@@ -1,6 +1,8 @@
 #!/bin/bash
 
-(git pull) && (rm ./exe/showmethepills)
+cp ./exe/showmethepills ./exe/showmethepills_bu
+
+((git pull) && (rm ./exe/showmethepills_bu)) || (mv ./exe/showmethepills_bu ./exe/showmethepills)
 
 chmod 775 ./exe/showmethepills
 
