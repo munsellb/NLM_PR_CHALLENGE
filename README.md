@@ -38,6 +38,9 @@ Leonardo De Melo Joao  (International Brazilian Student)  </br>
 
 <h3>Requirements</h3>
 ****
+
+<b>OS and Software</b>
+
 Running natively in Matlab, version 2010b or greater is required.
 
 Running as MCR application, the following are required:
@@ -49,14 +52,15 @@ Running as MCR application, the following are required:
 Note: The MCR application (i.e. all the libraries required to run an instance of Matlab) will 
 be installed in the /usr/local folder.
 
-Basic installation steps:
+<b>Basic installation Steps to Run as MCR Application</b>
 
-1. Install the MCR libraries (see URL above)
-2. Open a bash shell, cd into the NLM_PR_CHALLENGE directory, and create a symbolic link
+Install the MCR libraries (see URL above)
+
+Open a bash shell, cd into the NLM_PR_CHALLENGE directory, and create a symbolic link
 ```
 ln -s ./exe/showmethepills.sh showmethepills.sh
 ```
-3. Set the read/write/exeute bits as follows
+Set the read/write/exeute bits as follows
 ```
 chmod 775 ./exe/showmethepills.sh
 ```
