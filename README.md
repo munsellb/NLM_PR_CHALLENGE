@@ -4,7 +4,7 @@
 ---
 <ol>
 <li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#team">Team</a></li>
-<li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#os-and-software-Requirements">OS and Software Requirements</a></li>
+<li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#os-and-software-requirements">OS and Software Requirements</a></li>
 <li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#run-in-matlab">Run in Matlab</a></li>
 <li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#run-using-mcr">Run using MCR</a></li>
 <li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#pipeline">Pipeline</a></li>
@@ -20,7 +20,8 @@
 <h3>Team</h3>
 ****
 <b>Team Captain</b>: </br>
-Nick Desisto (US Citizen, College of Charleston Student) </br>
+Nick Desisto (US Citizen, College of Charleston Student) </br></br>
+
 <b>Team Captain Email Address</b>: </br>
 desistonv@g.cofc.edu </br>
 <b>Contact Information</b>: </br>
@@ -28,7 +29,7 @@ College of Charleston  </br>
 Department of Computer Science  </br>
 Harbor Walk East, Lab 105E  </br>
 Charleston, SC. 29401  </br>
-Phone 843.953.0428  </br>
+Phone 843.953.0428 </br></br>
 
 <b>Team Members</b>:  </br>
 Lucas Leandro Nesi (International Brazilian Student)  </br>
