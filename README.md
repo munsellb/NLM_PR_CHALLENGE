@@ -37,7 +37,7 @@ Phone 843.953.0428 </br>
 Lucas Leandro Nesi (International Brazilian Student)  </br>
 Leonardo De Melo Joao  (International Brazilian Student)  </br>
 
-<p><!-- pagebreak --></p>
+</br></br>
 
 <h3>Requirements</h3>
 ****
@@ -105,7 +105,7 @@ that contains the reference pill images, and the second argument
 is the path to the directory that contains that consumer pill 
 images. The NLM_PR_CHALLENGE is the root folder of the project.
 
-<p><!-- pagebreak --></p>
+</br></br>
 
 <h3>Pipeline</h3>
 ****
