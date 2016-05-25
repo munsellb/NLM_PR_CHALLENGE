@@ -90,9 +90,41 @@ For more information about this script, type "help showmethepills" at the matlab
 ****
 From the bash shell command prompt run the script:
 ```
-./showmethepills.sh '{NLM_PR_CHALLENGE}/data/dr' '{NLM_PR_CHALLENGE}data/dc'
+./showmethepills.sh 'NLM_PR_CHALLENGE/data/dr' 'NLM_PR_CHALLENGE/data/dc'
 ```
 Where the first argument is the full path to the directory that contains the 
 reference pill images, and the second argument is the path to the directory that contains 
 that consumer pill images. The NLM_PR_CHALLENGE is the root folder of the project.
 
+<h3>Pipeline</h3>
+****
+
+The basic algorithm/processing pipeline for our software application can be clearly seen
+in the showmethepills script provided below
+
+```
+fprintf('-----------------------------------------------\n');
+fprintf('[Step 1]: Executing Application\n');
+
+fprintf('[Step 2]: Organizing the reference pill images\n');
+orgImgs( 'DR', ref_dir, 'proc' );
+
+fprintf('[Step 2]: Organizing the consumer pill images\n');
+orgImgs( 'DC', con_dir, 'proc' );
+
+fprintf('[Step 3]: Processing the reference pill images\n');
+procImgs('DR','proc');
+
+fprintf('[Step 3]: Processing the consumer pill images\n');
+procImgs('DC','proc');
+
+opts.range = [1 5000];
+opts.save_files = true;
+opts.href = 1;
+
+fprintf('[Step 4]: Performing pill classification\n');
+classify( 'proc', 'DR', 'DC', opts );
+
+fprintf('[Step 5]: Creating MR CSV file\n');
+generateMR( 'proc', 'ShowMeThePills' );
+```
