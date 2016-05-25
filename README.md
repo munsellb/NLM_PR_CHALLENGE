@@ -56,16 +56,15 @@ folder.
 
 <h3>Install Steps</h3>
 ****
-Basic installation Steps to Run as MCR Application.
+Basic installation Steps to run as MCR application.
 
-Install the MCR libraries (see URL above)
-
-Open a bash shell, cd into the NLM_PR_CHALLENGE directory, 
+First install the MCR libraries (see URL above), then open 
+a bash shell and cd into the NLM_PR_CHALLENGE directory, 
 and create a symbolic link
 ```
 ln -s ./exe/showmethepills.sh showmethepills.sh
 ```
-Set the read/write/exeute bits as follows
+Lastly, set the read/write/exeute bits as follows
 ```
 chmod 775 ./exe/showmethepills.sh
 ```
