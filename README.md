@@ -202,6 +202,50 @@ The specific details of each processing steps 2 through 5 are provided below.
 ```
 
 <h5>Classification</h5>
-
+```
+%
+%   Usage: [ S, K, T ] = classify( proc_dir, ref, con )
+%
+%   Description: Compute the feature matrices for Shape (S),
+%   Color (K), and Text (T). At completion of the script 
+%   the three feature matrices will be stored in the proc_dir
+%   with the following names: S.mat, T.mat, and K.mat.
+%
+%   Arguments (All Strings): 
+%       (1) proc_dir = location of process directory
+%       (2) ref = reference data set. Value can only be DR or DC
+%       (3) con = consumer data set. Value can only be DR or DC
+%
+%   Return:
+%       Feature matrices for shape, color and text. For each 
+%       matrix the number of rows = number of consumer images
+%       and the number of columns = number of reference images.
+%       ( note: to combine: F = ( S + K + T )/3 )
+%
+%   Example:
+%       [S,K,T] = classify( 'proc', 'DR', 'DC' );
+%
+%
+%
+```
 
 <h5>MR Generation</h5>
+```
+%
+%   Usage: generateMR( proc_dir, file_name )
+%
+%   Description: Creates the scoring matrix as defined by 
+%   challenge (http://pir.nlm.nih.gov/challenge/)
+%
+%   Return: Nothing
+%
+%   Arguments: 2 required arguments (both strings)
+%            	proc_dir = location of processing directory on file system.
+%		file_name = name of the CSV file.
+%
+%   Example usage:
+%   
+%               generateMR( 'proc', 'showmethepills_MR.csv' )
+%
+%
+```
