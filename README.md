@@ -4,7 +4,7 @@
 ---
 <ol>
 <li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#team">Team</a></li>
-<li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#os-and-software-requirements">Requirements</a></li>
+<li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#requirements">Requirements</a></li>
 <li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#run-in-matlab">Run in Matlab</a></li>
 <li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#run-as-mcr-application">Run as MCR application</a></li>
 <li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#pipeline">Pipeline</a></li>
@@ -41,9 +41,9 @@ Leonardo De Melo Joao  (International Brazilian Student)  </br>
 
 <b>OS and Software</b>
 
-Running natively in Matlab, version 2010b or greater is required.
+Run natively in Matlab, version 2010b or greater is required.
 
-Running as MCR application, the following are required:
+Run as MCR application, the following are required:
 <ul>
     <li>Linux (64-bit) OS is required (Tested on latest release of Ubuntu and Scientific Linux)</li>
     <li>MCR installer (http://munsellb.people.cofc.edu/matlab_mcr/MyAppInstaller_mcr.install)</li>
