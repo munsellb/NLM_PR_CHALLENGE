@@ -2,10 +2,18 @@ function generateMR( proc_dir, file_name )
 %
 %   Usage: generateMR( proc_dir, file_name )
 %
+%   Description: Creates the scoring matrix as defined by 
+%   challenge (http://pir.nlm.nih.gov/challenge/)
 %
+%   Return: Nothing
 %
+%   Arguments: 2 required arguments (both strings)
+%            	proc_dir = location of processing directory on file system.
+%		file_name = name of the CSV file.
 %
-%
+%   Example usage:
+%   
+%               generateMR( 'proc', 'showmethepills_MR.csv' )
 %
 %
 
