@@ -19,9 +19,14 @@
 
 <h3>Team</h3>
 
-<b>Team Captain</b>: Nick Desisto (US Citizen, College of Charleston Student)
-<b>Team Captain Email Address</b>: desistonv@g.cofc.edu
-<b>Contact Information</b>: College of Charleston, Department of Computer Science, Harbor Walk East, Lab 105E, Charleston, SC. 29401. Phone: 843.953.0428
+<b>Team Captain</b>: Nick Desisto (US Citizen, College of Charleston Student) </br>
+<b>Team Captain Email Address</b>: desistonv@g.cofc.edu </br>
+<b>Contact Information</b>: 
+College of Charleston
+Department of Computer Science
+Harbor Walk East, Lab 105E
+Charleston, SC. 29401
+Phone 843.953.0428
 
 <b>Team Members</b>: Lucas Leandro Nesi (International Brazilian Student), Leonardo De Melo Joao  (International Brazilian Student)
 
