@@ -90,10 +90,9 @@ For more information about this script, type "help showmethepills" at the matlab
 ****
 From the bash shell command prompt run the script:
 ```
-showmethepills( 'data/dr', 'data/dc' );
+./showmethepills.sh '{NLM_PR_CHALLENGE}/data/dr' '{NLM_PR_CHALLENGE}data/dc'
 ```
-Where the first argument is the path (full or relative) to the directory that contains the 
+Where the first argument is the full path to the directory that contains the 
 reference pill images, and the second argument is the path to the directory that contains 
-that consumer pill images. 
+that consumer pill images. The NLM_PR_CHALLENGE is the root folder of the project.
 
-For more information about this script, type "help showmethepills" at the matlab command prompt.
