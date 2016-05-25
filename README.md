@@ -20,6 +20,9 @@
 
 <h3>Team</h3>
 ****
+<b>Team Name</b>: </br>
+ShowMeThePills </br>
+
 <b>Team Captain</b>: </br>
 Nick Desisto (US Citizen, College of Charleston Student) </br>
 
