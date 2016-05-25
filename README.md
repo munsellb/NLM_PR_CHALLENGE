@@ -40,6 +40,9 @@ Phone 843.953.0428 </br>
 Lucas Leandro Nesi (International Brazilian Student)  </br>
 Leonardo De Melo Joao  (International Brazilian Student)  </br>
 
+<b>GitHub</b> </br>
+https://github.com/munsellb/NLM_PR_CHALLENGE
+
 </br>
 
 <h3>Requirements</h3>
