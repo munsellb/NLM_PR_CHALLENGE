@@ -37,7 +37,7 @@ Phone 843.953.0428 </br>
 Lucas Leandro Nesi (International Brazilian Student)  </br>
 Leonardo De Melo Joao  (International Brazilian Student)  </br>
 
-</br></br>
+</br>
 
 <h3>Requirements</h3>
 ****
