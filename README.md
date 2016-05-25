@@ -6,7 +6,7 @@
 <li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#team">Team</a></li>
 <li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#os-and-software-requirements">OS and Software Requirements</a></li>
 <li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#run-in-matlab">Run in Matlab</a></li>
-<li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#run-using-mcr">Run using MCR</a></li>
+<li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#run-as-mcr_application">Run as MCR application</a></li>
 <li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#pipeline">Pipeline</a></li>
 <ul>
 <li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#image-organization">Image Organization</a></li> 
@@ -48,3 +48,25 @@ Running as MCR application, the following are required:
 
 Note: The MCR application (i.e. all the libraries required to run an instance of Matlab) will be installed in the /usr/local folder.
 
+<h3>Run in Matlab</h3>
+****
+
+Add the required files and folders to the Matlab path. From the matlab command prompt run
+```
+setmenv;
+```
+Note: this script is only executed once and must be done before any other script is executed! 
+Otherwise, the remaining steps will produce file not found errors.
+
+From the Matlab command prompt then run:
+```
+showmethepills( 'data/dr', 'data/dc' );
+```
+Where the first argument is the path (full or relative) to the directory that contains the 
+reference pill images, and the second argument is the path to the directory that contains 
+that consumer pill images. 
+
+For more information about this script, type "help showmethepills" at the matlab command prompt.
+
+<h3>Run as MCR Application</h3>
+****
