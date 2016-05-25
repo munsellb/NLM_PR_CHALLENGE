@@ -2,7 +2,10 @@ function showmethepills( ref_dir, con_dir )
 %
 %	Usage: showmethepills( ref_dir, con_dir)
 %
-%
+%	Arguments: two are required
+%		ref_dir = path to reference image folder
+%		con_dir = path to consumer image folder
+%	Note: both arguments are strings
 %
 %
 %
