@@ -18,20 +18,22 @@
 
 
 <h3>Team</h3>
-
+****
 <b>Team Captain</b>: Nick Desisto (US Citizen, College of Charleston Student) </br>
 <b>Team Captain Email Address</b>: desistonv@g.cofc.edu </br>
-<b>Contact Information</b>: 
-College of Charleston
-Department of Computer Science
-Harbor Walk East, Lab 105E
-Charleston, SC. 29401
-Phone 843.953.0428
+<b>Contact Information</b>:  </br>
+College of Charleston  </br>
+Department of Computer Science  </br>
+Harbor Walk East, Lab 105E  </br>
+Charleston, SC. 29401  </br>
+Phone 843.953.0428  </br>
 
-<b>Team Members</b>: Lucas Leandro Nesi (International Brazilian Student), Leonardo De Melo Joao  (International Brazilian Student)
+<b>Team Members</b>:  </br>
+Lucas Leandro Nesi (International Brazilian Student)  </br>
+Leonardo De Melo Joao  (International Brazilian Student)  </br>
 
 <h3>OS and Software Requirements</h3>
-
+****
 Running natively in Matlab, version 2010b or greater is required.
 
 Running as MCR application, the following are required:
