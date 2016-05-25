@@ -4,7 +4,7 @@
 ---
 <ol>
 <li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#team">Team</a></li>
-<li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#os-and-software-requirements">OS and Software Requirements</a></li>
+<li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#os-and-software-requirements">Requirements</a></li>
 <li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#run-in-matlab">Run in Matlab</a></li>
 <li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#run-as-mcr-application">Run as MCR application</a></li>
 <li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#pipeline">Pipeline</a></li>
@@ -36,7 +36,7 @@ Phone 843.953.0428 </br>
 Lucas Leandro Nesi (International Brazilian Student)  </br>
 Leonardo De Melo Joao  (International Brazilian Student)  </br>
 
-<h3>OS and Software Requirements</h3>
+<h3>Requirements</h3>
 ****
 Running natively in Matlab, version 2010b or greater is required.
 
@@ -49,12 +49,14 @@ Running as MCR application, the following are required:
 Note: The MCR application (i.e. all the libraries required to run an instance of Matlab) will 
 be installed in the /usr/local folder.
 
-Open a bash shell, move into the NLM_PR_CHALLENGE directory, and create a symbolic link
+Basic installation steps:
+
+1. Install the MCR libraries (see URL above)
+2. Open a bash shell, move into the NLM_PR_CHALLENGE directory, and create a symbolic link
 ```
 ln -s ./exe/showmethepills.sh showmethepills.sh
 ```
-
-Then set the read/write/exeute bits as follows
+3. Set the read/write/exeute bits as follows
 ```
 chmod 775 ./exe/showmethepills.sh
 ```
