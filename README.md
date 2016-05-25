@@ -52,7 +52,7 @@ be installed in the /usr/local folder.
 Basic installation steps:
 
 1. Install the MCR libraries (see URL above)
-2. Open a bash shell, move into the NLM_PR_CHALLENGE directory, and create a symbolic link
+2. Open a bash shell, cd into the NLM_PR_CHALLENGE directory, and create a symbolic link
 ```
 ln -s ./exe/showmethepills.sh showmethepills.sh
 ```
