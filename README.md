@@ -48,8 +48,9 @@ Run as MCR application, the following are required:
     <li>MCR installer (http://munsellb.people.cofc.edu/matlab_mcr/MyAppInstaller_mcr.install)</li>
 </ul>
 
-Note: The MCR application (i.e. all the libraries required to run an instance of Matlab) will 
-be installed in the /usr/local folder.
+Note: The MCR application (i.e. all the libraries required 
+to run an instance of Matlab) will be installed in the /usr/local 
+folder.
 
 <h3>Install Steps</h3>
 ****
@@ -57,7 +58,8 @@ Basic installation Steps to Run as MCR Application.
 
 Install the MCR libraries (see URL above)
 
-Open a bash shell, cd into the NLM_PR_CHALLENGE directory, and create a symbolic link
+Open a bash shell, cd into the NLM_PR_CHALLENGE directory, 
+and create a symbolic link
 ```
 ln -s ./exe/showmethepills.sh showmethepills.sh
 ```
@@ -69,22 +71,26 @@ chmod 775 ./exe/showmethepills.sh
 <h3>Run in Matlab</h3>
 ****
 
-Add the required files and folders to the Matlab path. From the matlab command prompt run
+Add the required files and folders to the Matlab path. 
+From the matlab command prompt run
 ```
 setmenv;
 ```
-Note: this script is only executed once and must be done before any other script is executed! 
-Otherwise, the remaining steps will produce file not found errors.
+Note: this script is only executed once and must be done 
+before any other script is executed! Otherwise, the remaining 
+steps will produce file not found errors.
 
 From the Matlab command prompt then run:
 ```
 showmethepills( 'data/dr', 'data/dc' );
 ```
-Where the first argument is the path (full or relative) to the directory that contains the 
-reference pill images, and the second argument is the path to the directory that contains 
-that consumer pill images. 
+Where the first argument is the path (full or relative) 
+to the directory that contains the reference pill images, 
+and the second argument is the path to the directory that 
+contains that consumer pill images. 
 
-For more information about this script, type "help showmethepills" at the matlab command prompt.
+For more information about this script, type "help showmethepills" 
+at the matlab command prompt.
 
 <h3>Run as MCR Application</h3>
 ****
@@ -92,15 +98,17 @@ From the bash shell command prompt run the script:
 ```
 ./showmethepills.sh 'NLM_PR_CHALLENGE/data/dr' 'NLM_PR_CHALLENGE/data/dc'
 ```
-Where the first argument is the full path to the directory that contains the 
-reference pill images, and the second argument is the path to the directory that contains 
-that consumer pill images. The NLM_PR_CHALLENGE is the root folder of the project.
+Where the first argument is the full path to the directory 
+that contains the reference pill images, and the second argument 
+is the path to the directory that contains that consumer pill 
+images. The NLM_PR_CHALLENGE is the root folder of the project.
 
 <h3>Pipeline</h3>
 ****
 
-The basic algorithm/processing pipeline for our software application can be clearly seen
-in the showmethepills script provided below
+The basic algorithm/processing pipeline for our software 
+application can be clearly seen in the showmethepills script 
+shown below
 
 ```
 fprintf('-----------------------------------------------\n');
@@ -128,3 +136,72 @@ classify( 'proc', 'DR', 'DC', opts );
 fprintf('[Step 5]: Creating MR CSV file\n');
 generateMR( 'proc', 'ShowMeThePills' );
 ```
+The specific details of each processing steps 2 through 5 are provided below.
+
+<h5>Image Organization</h5> 
+```
+%
+%   Usage: orgImgs( type, data_dir, proc_dir )
+%
+%   Description: Organize reference (DC) or consumer (DC) pill images into 
+%   directory hierachy. At the completion of the script, the processing directory 
+%   will contain a separate directory that has provided the pill image. Additionally, 
+%   a Matlab file (DC.mat or DR.mat) will be created that contains a cell, and each 
+%   element in the cell defines a structure that has a "path" field and an "img" field. 
+%   The path field is the fully qualified location of the pill folder (on the file system), 
+%   and the img field has the full name of the image file (including file extension, 
+%   such as ".jpg").
+%
+%   Return: Nothing
+%
+%   Arguments: 3 required arguments (both strings)
+%              
+%              type = DR or DC (only these two will be accepted, not case
+%              sensitive)
+%              data_dir = location of the original pill images.
+%              proc_dir = location of processing directory on file system
+%              (if the directory does not exist, it will be created).
+%
+%   Example usage:
+%   
+%               orgImgs( 'DC', 'data', 'proc' )
+%
+%
+%
+```
+<h5>Image Processing</h5>
+```
+%
+%   Usage: procImgs( type, proc_dir )
+%
+%   Description: Process reference (DC) or consumer (DC) pill images using 
+%   directory hierachy created in orgImgs script. At the completion of the 
+%	script, the files required to compute our three features (shape, text, 
+%	will be created in the directory for each pill reference or consumer pill.
+%
+%   Return: Nothing
+%
+%   Arguments: 2 required arguments (both strings)
+%              
+%              type = DR or DC (only these two will be accepted, not case
+%              sensitive)
+%              proc_dir = location of processing directory on file system.
+%
+%   Example usage:
+%   
+%               procImgs( 'DC', 'proc' )
+%
+%	Note: The following files are created
+%		1) mask_bI.jpg (binary mask that has the same resolution as RGB pill image)
+%		2) mask_bW.jpg (square binary mask used to compute shape feature)
+%		3) mask_RGB.jpg (square color mask used to compute text feature)
+%		4) lcolor.png (square color image used to compute color feature)
+%
+%	
+%
+```
+
+<h5>Classification</h5>
+
+
+<h5>MR Generation</h5>
