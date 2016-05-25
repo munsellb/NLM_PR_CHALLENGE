@@ -1,44 +1,39 @@
 ## NLM_PR_CHALLENGE
 
+<h3> Table of contents </h3>
+---
+<ol>
+<li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#Team">Team</a></li>
+<li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#OS-and-Software-Requirements">OS and Software Requirements</a></li>
+<li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#Run-in-Matlab">Run in Matlab</a></li>
+<li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#Run-using-MCR">Run using MCR</a></li>
+<li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#Pipeline">Pipeline</a></li>
+<ul>
+<li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#Image-Organization">Image Organization</a></li> 
+<li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#Image-Processing">Image Processing</a></li>
+<li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#Classification">Classification</a></li>
+<li><a href="https://github.com/munsellb/NLM_PR_CHALLENGE/blob/master/README.md#MR Generation">MR Generation</a></li>
+</ul>
+</ol>
 
-###Step 1: Setup matlab environment
 
-Add the required files and folders to the matlab path. From the matlab command prompt run
-```
-setmenv;
-```
-Note: this script is only executed once and must be done before any other script is executed! Otherwise, the remaining steps will produce file not found errors.
+<h3>Team</h3>
 
-###Step 2: Organize the raw pill image files
+<b>Team Captain</b>: Nick Desisto (US Citizen, College of Charleston Student)
+<b>Team Captain Email Address<b>: 
+<b>Contact Information<b>: College of Charleston, Department of Computer Science, Harbor Walk East, Lab 105E, Charleston, SC. 29401. Phone: 843.953.0428
 
-From the matlab command prompt run:
-```
-orgImgs( 'DR', 'data', 'proc' );
-orgImgs( 'DC', 'data', 'proc' );
-```
-For more information about this script, type "help orgImgs" at the matlab command prompt.
+<b>Team Members<b>: Lucas Leandro Nesi (International Brazilian Student), Leonardo De Melo Joao  (International Brazilian Student)
 
-###Step 3: Process the raw pill image files
+<h3>OS and Software Requirements</h3>
 
-From the matlab command prompt run:
-```
-procImgs( 'DR', 'proc' );
-procImgs( 'DC', 'proc' );
-```
-For more information about this script, type "help procImgs" at the matlab command prompt.
+Running natively in Matlab, version 2010b or greater is required.
 
-###Step 4: Compute classification
+Running as MCR application, the following are required:
+<ul>
+    <li>Linux (64-bit) OS is required (Tested on latest release of Ubuntu and Scientific Linux)</li>
+    <li>MCR installer (http://munsellb.people.cofc.edu/matlab_mcr/MyAppInstaller_mcr.install)</li>
+</ul>
 
-From the matlab command prompt run:
-```
-[ S, K, T ] = classify( 'proc', 'DR', 'DC' );
-```
-For more information about this script, type "help classifyImgs" at the matlab command prompt.
+Note: The MCR application (i.e. all the libraries required to run an instance of Matlab) will be installed in the /usr/local folder.
 
-###Step 5: Generate MR csv file
-
-From the matlab command prompt run:
-```
-generateMR( 'proc', 'showmethepillz' );
-```
-For more information about this script, type "help generateMR" at the matlab command prompt.
