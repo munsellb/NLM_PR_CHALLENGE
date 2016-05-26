@@ -43,8 +43,6 @@ Leonardo De Melo Joao  (International Brazilian Student)  </br>
 <b>GitHub</b> </br>
 https://github.com/munsellb/NLM_PR_CHALLENGE
 
-</br>
-
 <h3>Requirements</h3>
 ****
 
@@ -110,7 +108,6 @@ that contains the reference pill images, and the second argument
 is the path to the directory that contains that consumer pill 
 images. The NLM_PR_CHALLENGE is the root folder of the project.
 
-</br></br>
 
 <h3>Pipeline</h3>
 ****
